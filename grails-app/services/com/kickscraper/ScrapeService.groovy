@@ -14,6 +14,10 @@ class ScrapeService {
         processRewardsPage url
     }
 
+    private def processRewardsPage( url ){
+
+    }
+
     private def processSearchPage(url) {
 
         Browser.drive {
