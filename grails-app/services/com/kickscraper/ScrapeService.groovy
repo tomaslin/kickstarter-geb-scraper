@@ -7,14 +7,26 @@ class ScrapeService {
 
 
     def search(term) {
-        processSearchPage "http://www.kickstarter.com/projects/search?term=${ URLCodec.encode( term ) }"
+        processSearchPage "http://www.kickstarter.com/projects/search?term=${ URLCodec.encode(term) }"
     }
 
-    def rewards(url){
+    def rewards(url) {
         processRewardsPage url
     }
 
-    private def processRewardsPage( url ){
+    private def processRewardsPage(url) {
+
+        Browser.drive {
+            go url
+            $('.NS-projects-reward.clickable').each { element ->
+                println element.find('h3').text()
+                println element.find('.backers-limits span.num-backers').text()
+                println element.find('.backers-limits span.limited')?.text()
+                println element.find('.delivery-date').text()
+                println element.find('.desc').text()
+            }
+
+        }
 
     }
 
