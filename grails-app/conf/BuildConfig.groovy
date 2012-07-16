@@ -12,7 +12,7 @@ grails.project.dependency.resolution = {
         // specify dependency exclusions here; for example, uncomment this to disable ehcache:
         // excludes 'ehcache'
     }
-    log "error" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
+    log "warn" // log level of Ivy resolver, either 'error', 'warn', 'info', 'debug' or 'verbose'
     checksums true // Whether to verify checksums on resolve
 
     repositories {
@@ -39,6 +39,8 @@ grails.project.dependency.resolution = {
         runtime 'org.codehaus.geb:geb-core:0.7.0'
         runtime 'org.seleniumhq.selenium:selenium-htmlunit-driver:2.24.1'
         runtime 'org.seleniumhq.selenium:selenium-support:2.24.1'
+        test "com.github.robfletcher:betamax:1.0"
+
 
     }
 
@@ -46,6 +48,8 @@ grails.project.dependency.resolution = {
         runtime ":hibernate:$grailsVersion"
         runtime ":jquery:1.7.2"
         runtime ":resources:1.1.6"
+
+        test ":spock:0.6"
 
         // Uncomment these (or add new ones) to enable additional resources capabilities
         //runtime ":zipped-resources:1.0"
