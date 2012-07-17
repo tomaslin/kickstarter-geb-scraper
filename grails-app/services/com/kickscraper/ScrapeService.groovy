@@ -16,16 +16,24 @@ class ScrapeService {
     }
 
     private def processRewardsPage(url) {
+
+        def pledgeLevels = []
+
         browser.drive {
             go url
+
             $('.NS-projects-reward.clickable').each { element ->
-                println element.find('h3').text()
-                println element.find('.backers-limits span.num-backers').text()
-                println element.find('.backers-limits span.limited')?.text()
-                println element.find('.delivery-date').text()
-                println element.find('.desc').text()
+                def pledgeLevel = [:]
+                pledgeLevel.title = element.find('h3').text()
+                pledgeLevel.backers = element.find('.backers-limits span.num-backers').text()
+                pledgeLevel.limit = element.find('.backers-limits span.limited')?.text()
+                pledgeLevel.delivery = element.find('.delivery-date').text()
+                pledgeLevel.description = element.find('.desc').text()
+                pledgeLevels << pledgeLevel
             }
         }
+
+        pledgeLevels
     }
 
     private def processSearchPage(url) {
